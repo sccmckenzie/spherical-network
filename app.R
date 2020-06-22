@@ -5,7 +5,9 @@ library(reactable)
 library(widyr)
 library(threejs)
 
+source("sphereFun.R")
 source("code.R")
+
 
 ui <- tagList(
   tags$head(includeScript("window-size.js")),
@@ -62,7 +64,7 @@ server <- function(input, output, session) {
               showPageInfo = FALSE,
               pagination = FALSE,
               rowStyle = function(index) {
-                  if (cocktails[index, "grp"] == 1) {
+                  if (filter(cocktails, drink == drink())[index, "grp"] == 1) {
                     list(background = "#79D7F7")
                   }
               },
