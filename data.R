@@ -60,4 +60,16 @@ cocktails %>%
   mutate(category = coalesce(category, "other"),
          ingredient = if_else(is.na(new_ingredient), ingredient, new_ingredient)) %>% 
   select(-freq, -new_ingredient) %>% 
+  rows_insert(tibble(drink = "Screwdriver",
+                     ingredient_number = 2,
+                     ingredient = "orange juice",
+                     measure = "3 oz",
+                     category = "other"),
+              by = c("drink", "ingredient_number")) %>% 
+  rows_update(tibble(drink = "H.D.",
+                     ingredient_number = 1,
+                     ingredient = "Whiskey",
+                     measure = "4 cl",
+                     category = "other"),
+              by = c("drink", "ingredient_number")) %>% 
   write_rds("cocktails.rds") # dataset ready for shiny app

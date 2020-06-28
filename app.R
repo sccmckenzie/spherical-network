@@ -8,7 +8,6 @@ library(threejs)
 source("sphereFun.R")
 source("code.R")
 
-
 ui <- tagList(
   tags$head(includeScript("window-size.js")),
   includeCSS("css.css"),
